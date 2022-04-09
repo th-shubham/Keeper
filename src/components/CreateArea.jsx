@@ -30,6 +30,12 @@ function CreateArea(props) {
 					name="title"
 					onKeyDown={(event) => {
 						if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
+						if (event.code === "Enter") {
+							const form = event.target.form;
+							const index = [...form].indexOf(event.target);
+							form.elements[index + 1].focus();
+							event.preventDefault();
+						}
 					}}
 					onChange={handleChange}
 					value={note.title}

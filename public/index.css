@@ -100,3 +100,21 @@ form button:hover {
 form button:active {
 	box-shadow: none;
 }
+
+.deleteButton {
+	position: relative;
+	float: right;
+	margin-right: 10px;
+	color: #f5ba13;
+	border: none;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	outline: none;
+}
+.deleteButton:hover {
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
+}
+.deleteButton:active {
+	box-shadow: none;
+}

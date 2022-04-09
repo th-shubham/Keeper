@@ -12,36 +12,40 @@ function CreateArea(props) {
 			return { ...prevNote, [name]: value };
 		});
 	}
+
+	function handleSubmit(event) {
+		props.onAdd(
+			note
+		); /* passing note as parameter to addNote function which is added as Attribute in CreateArea tag in App.jx*/
+		setNote({
+			title: "",
+			content: "",
+		}); /*Empty the Inputs on Submit */
+		event.preventDefault(); /*prevent form from refreshing(defaultBehavior) */
+	}
 	return (
 		<div>
 			<form>
 				<input
 					name="title"
+					onKeyDown={(event) => {
+						if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
+					}}
 					onChange={handleChange}
 					value={note.title}
 					placeholder="Title"
 				/>
 				<textarea
+					onKeyDown={(event) => {
+						if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
+					}}
 					name="content"
 					onChange={handleChange}
 					value={note.content}
 					placeholder="Take a note..."
 					rows="3"
 				/>
-				<button
-					onClick={(event) => {
-						props.onAdd(
-							note
-						); /* passing note as parameter to addNote function which is added as Attribute in CreateArea tag in App.jx*/
-						setNote({
-							title: "",
-							content: "",
-						}); /*Empty the Inputs on Submit */
-						event.preventDefault(); /*prevent form from refreshing(defaultBehavior) */
-					}}
-				>
-					Add
-				</button>
+				<button onClick={handleSubmit}>Add</button>
 			</form>
 		</div>
 	);

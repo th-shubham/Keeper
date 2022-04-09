@@ -4,10 +4,13 @@ import Footer from "./footer";
 import CreateArea from "./CreateArea";
 import Note from "./Note";
 function App() {
+	const [notesArray, setNotesArray] = React.useState([]);
+	function addNote() {}
+
 	return (
 		<div>
 			<Header />
-			<CreateArea />
+			<CreateArea onAdd={addNote} />
 			<Note />
 			<Footer />
 		</div>

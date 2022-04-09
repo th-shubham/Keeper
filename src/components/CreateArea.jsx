@@ -28,7 +28,20 @@ function CreateArea(props) {
 					placeholder="Take a note..."
 					rows="3"
 				/>
-				<button>Add </button>
+				<button
+					onClick={(event) => {
+						props.onAdd(
+							note
+						); /* passing note as parameter to addNote function which is added as Attribute in CreateArea tag in App.jx*/
+						setNote({
+							title: "",
+							content: "",
+						}); /*Empty the Inputs on Submit */
+						event.preventDefault(); /*prevent form from refreshing(defaultBehavior) */
+					}}
+				>
+					Add
+				</button>
 			</form>
 		</div>
 	);

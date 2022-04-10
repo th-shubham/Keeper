@@ -95,13 +95,13 @@ form button {
 	color: #fff;
 	border-radius: 50%;
 }
+.deleteButton:hover {
+	color: #000;
+}
 form button:hover {
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
+	color: #fff;
+	background-color: rgba(104, 102, 102, 0.925);
 }
-form button:active {
-	box-shadow: none;
-}
-
 .deleteButton {
 	position: relative;
 	float: right;
@@ -112,10 +112,4 @@ form button:active {
 	height: 36px;
 	cursor: pointer;
 	outline: none;
-}
-.deleteButton:hover {
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.8);
-}
-.deleteButton:active {
-	box-shadow: none;
 }

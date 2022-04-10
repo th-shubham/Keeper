@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 function CreateArea(props) {
+	const [isExpanded, setIsExpended] = React.useState(false);
 	const [note, setNote] = React.useState({
 		title: "",
 		content: "",
@@ -14,34 +16,44 @@ function CreateArea(props) {
 	}
 
 	function handleSubmit(event) {
-		props.onAdd(
-			note
-		); /* passing note as parameter to addNote function which is added as Attribute in CreateArea tag in App.jx*/
-		setNote({
-			title: "",
-			content: "",
-		}); /*Empty the Inputs on Submit */
+		if (note.title !== "" || note.content !== "") {
+			props.onAdd(
+				note
+			); /* passing note as parameter to addNote function which is added as Attribute in CreateArea tag in App.jx*/
+			setNote({
+				title: "",
+				content: "",
+			}); /*Empty the Inputs on Submit */
+		}
+		/*If note if fully empty then focus to Title input again */
+
 		event.preventDefault(); /*prevent form from refreshing(defaultBehavior) */
 	}
 	return (
 		<div>
 			<form>
-				<input
-					name="title"
-					onKeyDown={(event) => {
-						if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
-						if (event.code === "Enter") {
-							const form = event.target.form;
-							const index = [...form].indexOf(event.target);
-							form.elements[index + 1].focus();
-							event.preventDefault();
-						}
-					}}
-					onChange={handleChange}
-					value={note.title}
-					placeholder="Title"
-				/>
+				{isExpanded && (
+					<input
+						name="title"
+						autoFocus="true"
+						onKeyDown={(event) => {
+							if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
+							if (event.code === "Enter") {
+								const form = event.target.form;
+								const index = [...form].indexOf(event.target);
+								form.elements[index + 1].focus();
+								event.preventDefault();
+							}
+						}}
+						onChange={handleChange}
+						value={note.title}
+						placeholder="Title"
+					/>
+				)}
 				<textarea
+					onFocus={() => {
+						setIsExpended(true);
+					}}
 					onKeyDown={(event) => {
 						if (event.code === "Enter" && event.ctrlKey) handleSubmit(event);
 					}}
@@ -49,9 +61,11 @@ function CreateArea(props) {
 					onChange={handleChange}
 					value={note.content}
 					placeholder="Take a note..."
-					rows="3"
+					rows={isExpanded ? "3" : "1"}
 				/>
-				<button onClick={handleSubmit}>Add</button>
+				<button onClick={handleSubmit}>
+					<AddIcon />
+				</button>
 			</form>
 		</div>
 	);

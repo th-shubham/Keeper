@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
 function CreateArea(props) {
-	const [isExpanded, setIsExpended] = React.useState(false);
-	const [note, setNote] = React.useState({
+	const [isExpanded, setIsExpended] = useState(false);
+	const [note, setNote] = useState({
 		title: "",
 		content: "",
 	});

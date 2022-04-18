@@ -6,7 +6,7 @@ import Footer from "./footer";
 import CreateArea from "./CreateArea";
 import Note from "./Note";
 
-const api_base = "https://keep-clone-project-shubham.herokuapp.com";
+const api_base = process.env.PORT;
 function App() {
 	const [notesArray, setNotesArray] = React.useState([]);
 

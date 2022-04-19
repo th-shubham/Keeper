@@ -1,10 +1,12 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
 const port = process.env.PORT || 3001;
 const URI = process.env.ATLAS_URI;
+const publicPath = path.join(__dirname, "./client/build");
 
 const app = express();
 
@@ -17,6 +19,12 @@ connection.once("open", () => {
 	console.log("MongoDB Database Connection establised successfully");
 });
 
+app.use(express.static(publicPath));
+
+// app.get("*", (req, res) => {
+// 	res.sendFile(path.join(publicPath, "index.html"));
+// });
+
 const notesRouter = require("./routes/note");
 app.use(notesRouter);
 
@@ -28,11 +36,9 @@ app.use(notesRouter);
 // 	});
 // }
 
-app.use(express.static(path.join(__dirname, "client/build")));
-
-app.get("/", function (req, res) {
-	res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
+// app.get("/", function (req, res) {
+// 	res.sendFile(path.join(__dirname, "client/build", "index.html"));
+// });
 
 app.listen(port, () => {
 	console.log(`Server is running on Port ${port}`);

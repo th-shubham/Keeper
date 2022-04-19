@@ -19,8 +19,6 @@ connection.once("open", () => {
 	console.log("MongoDB Database Connection establised successfully");
 });
 
-app.use(express.static(publicPath));
-
 // app.get("*", (req, res) => {
 // 	res.sendFile(path.join(publicPath, "index.html"));
 // });
@@ -28,6 +26,7 @@ app.use(express.static(publicPath));
 const notesRouter = require("./routes/note");
 app.use(notesRouter);
 
+app.use(express.static(publicPath));
 // if (process.end.NODE_ENV == "production") {
 // 	app.use(express.static("client/build"));
 // 	const path = require("path");

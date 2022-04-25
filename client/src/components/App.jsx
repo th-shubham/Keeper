@@ -55,7 +55,26 @@ function App() {
 	return (
 		<div>
 			<Header />
+			<div
+				id="g_id_onload"
+				data-client_id="293324348039-68mar5qk91c7t3njo98k5mimnbldtn2g.apps.googleusercontent.com"
+				data-context="signin"
+				data-ux_mode="popup"
+				data-login_uri="https://keep-clone-project-shubham.herokuapp.com"
+				data-nonce=""
+				data-auto_select="true"
+			></div>
 
+			<div
+				class="g_id_signin"
+				data-type="standard"
+				data-shape="rectangular"
+				data-theme="filled_blue"
+				data-text="continue_with"
+				data-size="medium"
+				data-locale="en-US"
+				data-logo_alignment="left"
+			></div>
 			<CreateArea onAdd={addNote} />
 			{notesArray.map((noteItem, index) => {
 				return (
